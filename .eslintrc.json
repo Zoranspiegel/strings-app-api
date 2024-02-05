@@ -9,6 +9,8 @@
         "sourceType": "module"
     },
     "rules": {
-        "@typescript-eslint/semi": ["error", "always"]
+        "@typescript-eslint/semi": ["error", "always"],
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off"
     }
 }
