@@ -1,4 +1,10 @@
 import { Client } from 'pg';
+import dotenv from 'dotenv';
+
+if (!process.env.PORT) {
+  console.log('Loading dotenv config');
+  dotenv.config();
+}
 
 export function getClient (): Client {
   if (process.env.PG_RAILWAY_DB) {
