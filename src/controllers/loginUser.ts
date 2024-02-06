@@ -41,7 +41,7 @@ const loginUser = async (req: Request, res: Response): Promise<Response> => {
     httpOnly: true,
     secure: true
   });
-  return res.status(200).json('Under development');
+  return res.status(200).json({ msg: 'Log in success' });
 };
 
 export default loginUser;
