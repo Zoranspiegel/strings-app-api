@@ -21,12 +21,14 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield client.connect();
     const loggingUserRes = yield client.query('select id, password from users where username ilike $1', [username]);
     if (!loggingUserRes.rowCount) {
-        return res.status(404).json({ error: 'User does not exist' });
+        res.status(404).json({ error: 'User does not exist' });
+        return;
     }
     const hash = loggingUserRes.rows[0].password;
     const match = yield bcrypt_1.default.compare(password, hash);
     if (!match) {
-        return res.status(400).json({ error: 'Invalid password' });
+        res.status(400).json({ error: 'Invalid password' });
+        return;
     }
     yield client.end();
     const userID = loggingUserRes.rows[0].id;
@@ -42,6 +44,6 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         httpOnly: true,
         secure: true
     });
-    return res.status(200).json({ msg: 'Log in success' });
+    res.status(200).json({ msg: 'Log in success' });
 });
 exports.default = loginUser;

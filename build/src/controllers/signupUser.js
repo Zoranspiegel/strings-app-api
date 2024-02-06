@@ -21,14 +21,16 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     yield client.connect();
     const userExistsRes = yield client.query('select id from users where username ilike $1', [username]);
     if (userExistsRes.rowCount) {
-        return res.status(400).json({ error: 'Username already taken' });
+        res.status(400).json({ error: 'Username already taken' });
+        return;
     }
     const saltOrRounds = 10;
     const hash = yield bcrypt_1.default.hash(password, saltOrRounds);
     const newUserRes = yield client.query('insert into users (username, password) values ($1, $2) returning id', [username, hash]);
     yield client.end();
     if (!newUserRes.rowCount) {
-        return res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Internal server error' });
+        return;
     }
     const userID = newUserRes.rows[0].id;
     const jwtSecret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -43,6 +45,6 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         httpOnly: true,
         secure: true
     });
-    return res.status(201).json({ msg: 'Sign up success' });
+    res.status(201).json({ msg: 'Sign up success' });
 });
 exports.default = signupUser;
