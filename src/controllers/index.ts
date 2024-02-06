@@ -1,9 +1,9 @@
 import loginUser from './loginUser';
 import signupUser from './signupUser';
+import getUserProfile from './getUserProfile';
 
-const ctr = {
+export default {
   loginUser,
-  signupUser
+  signupUser,
+  getUserProfile
 };
-
-export default ctr;

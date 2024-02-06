@@ -3,7 +3,7 @@ import { getClient } from '../db';
 import { SignJWT } from 'jose';
 import bcrypt from 'bcrypt';
 
-const loginUser = async (req: Request, res: Response): Promise<Response> => {
+const loginUser = async (req: Request, res: Response): Promise<void> => {
   const { username, password }: { username: string, password: string } = req.body;
 
   const client = getClient();
@@ -15,14 +15,16 @@ const loginUser = async (req: Request, res: Response): Promise<Response> => {
   );
 
   if (!loggingUserRes.rowCount) {
-    return res.status(404).json({ error: 'User does not exist' });
+    res.status(404).json({ error: 'User does not exist' });
+    return;
   }
 
   const hash: string = loggingUserRes.rows[0].password;
   const match = await bcrypt.compare(password, hash);
 
   if (!match) {
-    return res.status(400).json({ error: 'Invalid password' });
+    res.status(400).json({ error: 'Invalid password' });
+    return;
   }
 
   await client.end();
@@ -41,7 +43,7 @@ const loginUser = async (req: Request, res: Response): Promise<Response> => {
     httpOnly: true,
     secure: true
   });
-  return res.status(200).json({ msg: 'Log in success' });
+  res.status(200).json({ msg: 'Log in success' });
 };
 
 export default loginUser;

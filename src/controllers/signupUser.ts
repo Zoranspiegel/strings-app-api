@@ -3,7 +3,7 @@ import { getClient } from '../db';
 import { SignJWT } from 'jose';
 import bcrypt from 'bcrypt';
 
-const signupUser = async (req: Request, res: Response): Promise<Response> => {
+const signupUser = async (req: Request, res: Response): Promise<void> => {
   const { username, password }: { username: string, password: string } = req.body;
 
   const client = getClient();
@@ -15,7 +15,8 @@ const signupUser = async (req: Request, res: Response): Promise<Response> => {
   );
 
   if (userExistsRes.rowCount) {
-    return res.status(400).json({ error: 'Username already taken' });
+    res.status(400).json({ error: 'Username already taken' });
+    return;
   }
 
   const saltOrRounds = 10;
@@ -28,7 +29,8 @@ const signupUser = async (req: Request, res: Response): Promise<Response> => {
   await client.end();
 
   if (!newUserRes.rowCount) {
-    return res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error' });
+    return;
   }
 
   const userID: string = newUserRes.rows[0].id;
@@ -45,7 +47,7 @@ const signupUser = async (req: Request, res: Response): Promise<Response> => {
     httpOnly: true,
     secure: true
   });
-  return res.status(201).json({ msg: 'Sign up success' });
+  res.status(201).json({ msg: 'Sign up success' });
 };
 
 export default signupUser;
