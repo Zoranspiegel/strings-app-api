@@ -6,4 +6,6 @@ const router = Router();
 
 router.get('/', mdw.authenticate, ctr.getUserPosts);
 
+router.post('/', mdw.authenticate, ctr.createPost);
+
 export default router;
