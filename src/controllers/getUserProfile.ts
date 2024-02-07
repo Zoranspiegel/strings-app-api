@@ -7,7 +7,7 @@ export default async function getUserProfile (req: MyRequest, res: Response): Pr
   await client.connect();
 
   const loggedUserRes = await client.query(
-    'select username, avatar, is_admin from users where id = $1',
+    'select id, username, avatar, is_admin from users where id = $1',
     [req.loggedUserID]
   );
 
