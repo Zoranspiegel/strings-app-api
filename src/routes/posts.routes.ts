@@ -8,4 +8,6 @@ router.get('/', mdw.authenticate, ctr.getUserPosts);
 
 router.post('/', mdw.authenticate, ctr.createPost);
 
+router.get('/feed', mdw.authenticate, ctr.getFeedPosts);
+
 export default router;

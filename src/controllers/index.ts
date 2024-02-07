@@ -3,11 +3,13 @@ import signupUser from './signupUser';
 import getUserProfile from './getUserProfile';
 import getUserPosts from './getUserPosts';
 import createPost from './createPost';
+import getFeedPosts from './getFeedPosts';
 
 export default {
   loginUser,
   signupUser,
   getUserProfile,
   getUserPosts,
-  createPost
+  createPost,
+  getFeedPosts
 };
