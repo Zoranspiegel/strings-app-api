@@ -10,18 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db");
-function getUserProfile(req, res) {
+function createPost(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const { content } = req.body;
         const client = (0, db_1.getClient)();
         yield client.connect();
-        const loggedUserRes = yield client.query('select id, username, avatar, is_admin from users where id = $1', [req.loggedUserID]);
-        if (!loggedUserRes.rowCount) {
-            res.status(401).json({ error: 'Unauthenticated' });
-            return;
-        }
+        const newPostRes = yield client.query('insert into posts (user_id, content) values ($1, $2) returning *', [req.loggedUserID, content]);
         yield client.end();
-        const loggedUser = loggedUserRes.rows[0];
-        res.status(200).json(loggedUser);
+        res.status(201).json({ msg: 'Post successfully created', data: newPostRes.rows[0] });
     });
 }
-exports.default = getUserProfile;
+exports.default = createPost;
