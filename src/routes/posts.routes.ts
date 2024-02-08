@@ -10,4 +10,6 @@ router.post('/', mdw.authenticate, ctr.createPost);
 
 router.get('/feed', mdw.authenticate, ctr.getFeedPosts);
 
+router.delete('/:id', mdw.authenticate, ctr.deletePost);
+
 export default router;
