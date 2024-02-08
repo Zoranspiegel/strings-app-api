@@ -14,4 +14,6 @@ router.get('/:id', mdw.authenticate, ctr.getPostByID);
 
 router.delete('/:id', mdw.authenticate, ctr.deletePost);
 
+router.patch('/:id', mdw.authenticate, ctr.editPost);
+
 export default router;
