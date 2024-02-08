@@ -5,6 +5,7 @@ import getUserPosts from './getUserPosts';
 import createPost from './createPost';
 import getFeedPosts from './getFeedPosts';
 import deletePost from './deletePost';
+import getPostByID from './getPostByID';
 
 export default {
   loginUser,
@@ -13,5 +14,6 @@ export default {
   getUserPosts,
   createPost,
   getFeedPosts,
-  deletePost
+  deletePost,
+  getPostByID
 };

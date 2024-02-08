@@ -6,16 +6,17 @@ export default async function deletePost (req: MyRequest, res: Response): Promis
   const client = getClient();
   await client.connect();
 
-  const deletedPost = await client.query(
+  const deletedPostRes = await client.query(
     'delete from posts where user_id = $1 and id = $2 returning *',
     [req.loggedUserID, req.params.id]
   );
 
-  if (!deletedPost.rowCount) {
+  await client.end();
+
+  if (!deletedPostRes.rowCount) {
     res.status(404).json({ error: 'Post not found' });
     return;
   }
 
-  await client.end();
-  res.status(200).json({ msg: 'Post successfully deleted', data: deletedPost.rows[0] });
+  res.status(200).json({ msg: 'Post successfully deleted', data: deletedPostRes.rows[0] });
 }
