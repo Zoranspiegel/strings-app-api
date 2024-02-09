@@ -12,6 +12,8 @@ const getFeedPosts_1 = __importDefault(require("./getFeedPosts"));
 const deletePost_1 = __importDefault(require("./deletePost"));
 const getPostByID_1 = __importDefault(require("./getPostByID"));
 const editPost_1 = __importDefault(require("./editPost"));
+const getFollowers_1 = __importDefault(require("./getFollowers"));
+const getFollowedUsers_1 = __importDefault(require("./getFollowedUsers"));
 exports.default = {
     loginUser: loginUser_1.default,
     signupUser: signupUser_1.default,
@@ -21,5 +23,7 @@ exports.default = {
     getFeedPosts: getFeedPosts_1.default,
     deletePost: deletePost_1.default,
     getPostByID: getPostByID_1.default,
-    editPost: editPost_1.default
+    editPost: editPost_1.default,
+    getFollowers: getFollowers_1.default,
+    getFollowedUsers: getFollowedUsers_1.default
 };

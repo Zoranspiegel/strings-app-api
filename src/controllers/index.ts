@@ -7,6 +7,8 @@ import getFeedPosts from './getFeedPosts';
 import deletePost from './deletePost';
 import getPostByID from './getPostByID';
 import editPost from './editPost';
+import getFollowers from './getFollowers';
+import getFollowedUsers from './getFollowedUsers';
 
 export default {
   loginUser,
@@ -17,5 +19,7 @@ export default {
   getFeedPosts,
   deletePost,
   getPostByID,
-  editPost
+  editPost,
+  getFollowers,
+  getFollowedUsers
 };
