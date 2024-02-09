@@ -40,7 +40,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         .setExpirationTime('2w')
         .sign(jwtSecret);
     res.cookie('jwt-token', token, {
-        sameSite: 'strict',
+        sameSite: 'none',
         httpOnly: true,
         secure: true
     });
