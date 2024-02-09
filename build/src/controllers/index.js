@@ -14,6 +14,7 @@ const getPostByID_1 = __importDefault(require("./getPostByID"));
 const editPost_1 = __importDefault(require("./editPost"));
 const getFollowers_1 = __importDefault(require("./getFollowers"));
 const getFollowedUsers_1 = __importDefault(require("./getFollowedUsers"));
+const logoutUser_1 = __importDefault(require("./logoutUser"));
 exports.default = {
     loginUser: loginUser_1.default,
     signupUser: signupUser_1.default,
@@ -25,5 +26,6 @@ exports.default = {
     getPostByID: getPostByID_1.default,
     editPost: editPost_1.default,
     getFollowers: getFollowers_1.default,
-    getFollowedUsers: getFollowedUsers_1.default
+    getFollowedUsers: getFollowedUsers_1.default,
+    logoutUser: logoutUser_1.default
 };

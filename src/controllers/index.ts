@@ -9,6 +9,7 @@ import getPostByID from './getPostByID';
 import editPost from './editPost';
 import getFollowers from './getFollowers';
 import getFollowedUsers from './getFollowedUsers';
+import logoutUser from './logoutUser';
 
 export default {
   loginUser,
@@ -21,5 +22,6 @@ export default {
   getPostByID,
   editPost,
   getFollowers,
-  getFollowedUsers
+  getFollowedUsers,
+  logoutUser
 };
