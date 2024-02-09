@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+console.log(`🧞 CORS_ORIGIN: ${process.env.FRONT_ORIGIN}`);
+
 const app = express();
 app.use(express.json());
 app.use(cors({
