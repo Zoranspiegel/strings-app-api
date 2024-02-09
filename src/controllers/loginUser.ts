@@ -39,7 +39,7 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
     .sign(jwtSecret);
 
   res.cookie('jwt-token', token, {
-    sameSite: 'strict',
+    sameSite: 'none',
     httpOnly: true,
     secure: true
   });
