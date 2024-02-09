@@ -2,7 +2,7 @@ import type { Response } from 'express';
 import type { MyRequest } from '../../types';
 
 export default async function logoutUser (req: MyRequest, res: Response): Promise<void> {
-  res.clearCookie('jwt-token', {
+  res.cookie('jwt-token', '', {
     sameSite: 'none',
     httpOnly: true,
     secure: true

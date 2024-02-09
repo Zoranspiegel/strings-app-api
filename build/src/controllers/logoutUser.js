@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 function logoutUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        res.clearCookie('jwt-token', {
+        res.cookie('jwt-token', '', {
             sameSite: 'none',
             httpOnly: true,
             secure: true
